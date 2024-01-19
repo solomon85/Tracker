@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>GPS_Tracker</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <BaseOutputPath></BaseOutputPath>
+
+    <UserSecretsId>f1fbf1ff-5040-4e1e-b801-29199c81404a</UserSecretsId>
+	  <ConnectionStrings>
+		  <sqlConnection>
+			  
+		  </sqlConnection>
+	  </ConnectionStrings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="entityframework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="StackExchange.Redis" Version="2.7.17" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="System.Device.Location.Portable" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>
