@@ -1,0 +1,184 @@
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/GPS Tracker.exe
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/GPS Tracker.deps.json
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/GPS Tracker.runtimeconfig.json
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/GPS Tracker.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/GPS Tracker.pdb
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/EntityFramework.SqlServer.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/EntityFramework.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/Microsoft.Extensions.Caching.Abstractions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/Microsoft.Extensions.Logging.Abstractions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/Microsoft.Extensions.Options.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/Microsoft.Extensions.Primitives.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/Microsoft.Win32.SystemEvents.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/Pipelines.Sockets.Unofficial.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/StackExchange.Redis.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/System.CodeDom.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/System.Configuration.ConfigurationManager.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/System.Data.SqlClient.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/System.Device.Portable.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/System.Drawing.Common.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/System.IO.Pipelines.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/System.Security.Cryptography.ProtectedData.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/System.Security.Permissions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/System.Windows.Extensions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/runtimes/win-arm64/native/sni.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/runtimes/win-x64/native/sni.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/runtimes/win-x86/native/sni.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/Debug/net7.0/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/GPS Tracker.exe
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/GPS Tracker.deps.json
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/GPS Tracker.runtimeconfig.json
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/GPS Tracker.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/GPS Tracker.pdb
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/EntityFramework.SqlServer.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/EntityFramework.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Logging.Abstractions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Primitives.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Win32.SystemEvents.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Pipelines.Sockets.Unofficial.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/StackExchange.Redis.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/System.CodeDom.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/System.Configuration.ConfigurationManager.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/System.Data.SqlClient.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/System.Device.Portable.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/System.Drawing.Common.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/System.IO.Pipelines.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/System.Security.Cryptography.ProtectedData.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/System.Security.Permissions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/System.Windows.Extensions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win-arm64/native/sni.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win-x64/native/sni.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win-x86/native/sni.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.csproj.AssemblyReference.cache
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.AssemblyInfoInputs.cache
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.AssemblyInfo.cs
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.csproj.CoreCompileInputs.cache
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.sourcelink.json
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.csproj.CopyComplete
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/obj/Debug/net7.0/refint/GPS Tracker.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.pdb
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.genruntimeconfig.cache
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/obj/Debug/net7.0/ref/GPS Tracker.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.Abstractions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.Binder.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.CommandLine.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.EnvironmentVariables.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.FileExtensions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.Json.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.UserSecrets.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.DependencyInjection.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Diagnostics.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.FileProviders.Abstractions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.FileProviders.Physical.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.FileSystemGlobbing.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Hosting.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Hosting.Abstractions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Logging.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Logging.Configuration.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Logging.Console.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Logging.Debug.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Logging.EventLog.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Logging.EventSource.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/System.Diagnostics.DiagnosticSource.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/System.Diagnostics.EventLog.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/System.Text.Encodings.Web.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/System.Text.Json.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Diagnostics.EventLog.Messages.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Diagnostics.EventLog.dll
+C:/Users/rezay/source/repos/GPS Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/browser/lib/net7.0/System.Text.Encodings.Web.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/GPS Tracker
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/GPS Tracker.deps.json
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/GPS Tracker.runtimeconfig.json
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/GPS Tracker.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/GPS Tracker.pdb
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/EntityFramework.SqlServer.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/EntityFramework.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.Abstractions.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.Binder.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.CommandLine.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.EnvironmentVariables.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.FileExtensions.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.Json.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Configuration.UserSecrets.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.DependencyInjection.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Diagnostics.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.FileProviders.Abstractions.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.FileProviders.Physical.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.FileSystemGlobbing.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Hosting.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Hosting.Abstractions.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Logging.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Logging.Abstractions.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Logging.Configuration.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Logging.Console.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Logging.Debug.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Logging.EventLog.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Logging.EventSource.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Extensions.Primitives.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Microsoft.Win32.SystemEvents.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/Pipelines.Sockets.Unofficial.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/StackExchange.Redis.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/System.CodeDom.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/System.Configuration.ConfigurationManager.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/System.Data.SqlClient.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/System.Device.Portable.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/System.Diagnostics.DiagnosticSource.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/System.Diagnostics.EventLog.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/System.Drawing.Common.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/System.IO.Pipelines.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/System.Security.Cryptography.ProtectedData.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/System.Security.Permissions.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/System.Text.Encodings.Web.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/System.Text.Json.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/System.Windows.Extensions.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win-arm64/native/sni.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win-x64/native/sni.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win-x86/native/sni.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Diagnostics.EventLog.Messages.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Diagnostics.EventLog.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/browser/lib/net7.0/System.Text.Encodings.Web.dll
+/var/www/html/Tracker/GPS Tracker/bin/Debug/net7.0/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll
+/var/www/html/Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.csproj.AssemblyReference.cache
+/var/www/html/Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.GeneratedMSBuildEditorConfig.editorconfig
+/var/www/html/Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.AssemblyInfoInputs.cache
+/var/www/html/Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.AssemblyInfo.cs
+/var/www/html/Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.csproj.CoreCompileInputs.cache
+/var/www/html/Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.csproj.CopyComplete
+/var/www/html/Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.dll
+/var/www/html/Tracker/GPS Tracker/obj/Debug/net7.0/refint/GPS Tracker.dll
+/var/www/html/Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.pdb
+/var/www/html/Tracker/GPS Tracker/obj/Debug/net7.0/GPS Tracker.genruntimeconfig.cache
+/var/www/html/Tracker/GPS Tracker/obj/Debug/net7.0/ref/GPS Tracker.dll
