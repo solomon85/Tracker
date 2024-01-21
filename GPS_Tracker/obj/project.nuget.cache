@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1+u8BR4yhYwA15RjOrCwFXWPORu9gTY0qpdpSO+WKjp23Yz7f8oRNCm/r88MVzd1f27F9VD7ixefwGLbLiLpDQ==",
+  "dgSpecHash": "5L3et3TGWvKWZsmT+codgWNOz5VA/Rt7Jkz4pIMH9oBe1mYPH5n/G9vTKtS9Y+Z8ZzYqEx5WtwDEr7jtdSY0tA==",
   "success": true,
-  "projectFilePath": "/var/www/html/Tracker/GPS Tracker/GPS Tracker.csproj",
+  "projectFilePath": "/var/www/html/Tracker/GPS_Tracker/GPS Tracker.csproj",
   "expectedPackageFiles": [
     "/root/.nuget/packages/entityframework/6.4.4/entityframework.6.4.4.nupkg.sha512",
     "/root/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",

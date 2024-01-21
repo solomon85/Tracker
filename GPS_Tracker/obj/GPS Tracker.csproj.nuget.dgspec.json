@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/var/www/html/Tracker/GPS Tracker/GPS Tracker.csproj": {}
+    "/var/www/html/Tracker/GPS_Tracker/GPS Tracker.csproj": {}
   },
   "projects": {
-    "/var/www/html/Tracker/GPS Tracker/GPS Tracker.csproj": {
+    "/var/www/html/Tracker/GPS_Tracker/GPS Tracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/var/www/html/Tracker/GPS Tracker/GPS Tracker.csproj",
+        "projectUniqueName": "/var/www/html/Tracker/GPS_Tracker/GPS Tracker.csproj",
         "projectName": "GPS Tracker",
-        "projectPath": "/var/www/html/Tracker/GPS Tracker/GPS Tracker.csproj",
+        "projectPath": "/var/www/html/Tracker/GPS_Tracker/GPS Tracker.csproj",
         "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/var/www/html/Tracker/GPS Tracker/obj/",
+        "outputPath": "/var/www/html/Tracker/GPS_Tracker/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/root/.nuget/NuGet/NuGet.Config"
