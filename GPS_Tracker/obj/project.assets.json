@@ -2955,11 +2955,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rezay\\source\\repos\\GPS Tracker\\GPS_Tracker\\GPS_Tracker.csproj",
+      "projectUniqueName": "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\GPS_Tracker.csproj",
       "projectName": "GPS_Tracker",
-      "projectPath": "C:\\Users\\rezay\\source\\repos\\GPS Tracker\\GPS_Tracker\\GPS_Tracker.csproj",
+      "projectPath": "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\GPS_Tracker.csproj",
       "packagesPath": "C:\\Users\\rezay\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rezay\\source\\repos\\GPS Tracker\\GPS_Tracker\\obj\\",
+      "outputPath": "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\rezay\\AppData\\Roaming\\NuGet\\NuGet.Config",

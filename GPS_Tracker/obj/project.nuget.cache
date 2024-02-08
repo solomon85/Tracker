@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "e7ty7TbdMwYVkIF2eJ8cdLs+kI7iWntX+Uicnb1giC/K2CxEU1qc9KSfb/tb71OWn3BWmUV6nV2mWEppRy2jmA==",
+  "dgSpecHash": "kP8M1x/KwI1kSvSO0QFl52koR9CwFVdbUkzG6AJn1qFyQNf1V7T8YCXnFowzmRojw/wec444TAw4ISx1xCgsAg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rezay\\source\\repos\\GPS Tracker\\GPS_Tracker\\GPS_Tracker.csproj",
+  "projectFilePath": "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\GPS_Tracker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rezay\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\rezay\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

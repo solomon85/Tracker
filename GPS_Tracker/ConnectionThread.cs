@@ -17,7 +17,7 @@ namespace GPS_Tracker
         private static int rand = 0;
         public int id = 0;
         public string imei = "";
-        public RSocket client; 
+        public RSocket? client; 
         ParserBase parser = null;
         public int Decode(List<byte> receiveBytes, string IMEI)
         {
