@@ -1,0 +1,4 @@
+﻿1 - Reset All Daily Performance Include
+	A. Save Daily Performance (Park, StandBy)
+	B. Clear Park and StandBy points in redis
+

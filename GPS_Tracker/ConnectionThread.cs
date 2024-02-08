@@ -70,6 +70,7 @@ namespace GPS_Tracker
                     imei = Encoding.ASCII.GetString(byteData);
                     Console.WriteLine("Received Data : " + imei);
 
+                    //هر شب لیست جی پس اس های مجاز پاک شود
                     var deviceId = Redis.GetCacheData<long>(imei);
                     if (deviceId == 0)
                     {
@@ -80,12 +81,13 @@ namespace GPS_Tracker
                             var device = db.Devices.FirstOrDefault(d => d.DeviceIMEI == _imei && d.DeviceValidDateTo > DateTime.Now);
                             if (device == null)
                             {
-                                Redis.SetCacheData("BlockedImei_" + imei, DateTime.Now.AddMinutes(30).ToString());
+                                Redis.SetCacheData("BlockedImei_" + imei, DateTime.Now.ToString());
                                 allSocket.Remove(id);
                                 client.Close();
                                 return;
                             }
                             Redis.SetCacheData(imei, device.DeviceId.ToString());
+                            Redis.KeyExpire(imei, DateTime.Now.AddHours(12));    
                         }
                         else
                         {
@@ -115,6 +117,7 @@ namespace GPS_Tracker
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Exception : " + ex.Message);
 
             }
         }

@@ -1,4 +1,5 @@
 ﻿using GPS_Tracker.Models;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -156,19 +157,19 @@ namespace GPS_Tracker
                 }
 
 
-                var redisTime = Redis.GetCacheData<long>(IMEI + "_DataTimeStamp");
-                var redisLat = Redis.GetCacheData<int>(IMEI + "_DataLat");
-                var redisLon = Redis.GetCacheData<int>(IMEI + "_DataLong");
+                var redisTime = Redis.GetCacheData<long>(deviceId + "_DataTimeStamp");
+                var redisLat = Redis.GetCacheData<int>(deviceId + "_DataLat");
+                var redisLon = Redis.GetCacheData<int>(deviceId + "_DataLong");
                 var minTime = DateTimeOffset.Now.AddDays(-365).ToUnixTimeSeconds();
 
                 var powerOn = false;
-                if (Convert.ToBoolean(gpsData.IO_Elements_1B[1]) && (((double)gpsData.IO_Elements_2B[66]) / 1000) > 3.5)
+                if (gpsData.IO_Elements_1B[1] == 1 && (((double)gpsData.IO_Elements_2B[66]) / 1000) > 13.5)
                 {
-                    Redis.SetCacheData(IMEI + "_VehiclePower", "1");
+                    Redis.SetCacheData(deviceId + "_VehiclePower", "1");
                     powerOn = true;
                 }
                 else
-                    Redis.SetCacheData(IMEI + "_VehiclePower", "0");
+                    Redis.SetCacheData(deviceId + "_VehiclePower", "0");
 
 
 
@@ -208,9 +209,9 @@ namespace GPS_Tracker
                             new SqlParameter("@DeviceId", deviceId)
                             ,new SqlParameter("@ReportDate", deviceTime)
                             ,new SqlParameter("@TotalMovingDistance", newData.DataDistanceTraveled)
-                            ,new SqlParameter("@TotalMovingTime", timeStamp - redisTime)
+                            ,new SqlParameter("@TotalMovingTime", (timeStamp - redisTime) / 1000)
                             };
-                            db.Database.ExecuteSqlCommand("USP_Rpt_DailyPerformance_InsertOrUpdate @DeviceId, @ReportDate, @TotalMovingTime, @TotalMovingDistance", param);
+                            db.Database.ExecuteSqlCommand("USP_Rpt_DailyPerformances_InsertOrUpdate @DeviceId, @ReportDate, @TotalMovingTime, @TotalMovingDistance", param);
                         }
                     }
                     else
@@ -241,22 +242,32 @@ namespace GPS_Tracker
                             TowingDataDistanceTraveled = CalculateDistance(redisLat, redisLon, latitude, longtitude),
                         };
                         db.TowingData.Add(newData);
+                        if (redisTime > 0)
+                        {
+                            SqlParameter[] param = new SqlParameter[]{
+                            new SqlParameter("@DeviceId", deviceId)
+                            ,new SqlParameter("@ReportDate", deviceTime)
+                            ,new SqlParameter("@TotalTowingDistance", newData.TowingDataDistanceTraveled)
+                            ,new SqlParameter("@TotalTowingTime", (timeStamp - redisTime) / 1000)
+                            };
+                            db.Database.ExecuteSqlCommand("USP_Rpt_DailyPerformances_InsertOrUpdate @DeviceId, @ReportDate, @TotalTowingTime, @TotalTowingDistance", param);
+                        }
                     }
 
 
-                    Redis.SetCacheData(IMEI + "_DataTimeStamp", timeStamp.ToString());
-                    Redis.SetCacheData(IMEI + "_DataLat", latitude.ToString());
-                    Redis.SetCacheData(IMEI + "_DataLong", longtitude.ToString());
-                    Redis.SetCacheData(IMEI + "_DataAlt", altitude.ToString());
-                    Redis.SetCacheData(IMEI + "_DataAngle", angle.ToString());
-                    Redis.SetCacheData(IMEI + "_DataSpeed", speed.ToString());
-                    Redis.SetCacheData(IMEI + "_DataSatellites", satellites.ToString());
-                    Redis.SetCacheData(IMEI + "_DataDeviceBatteryVoltage", (((double)gpsData.IO_Elements_2B[67]) / 1000).ToString());
+                    Redis.SetCacheData(deviceId + "_DataTimeStamp", timeStamp.ToString());
+                    Redis.SetCacheData(deviceId + "_DataLat", latitude.ToString());
+                    Redis.SetCacheData(deviceId + "_DataLong", longtitude.ToString());
+                    Redis.SetCacheData(deviceId + "_DataAlt", altitude.ToString());
+                    Redis.SetCacheData(deviceId + "_DataAngle", angle.ToString());
+                    Redis.SetCacheData(deviceId + "_DataSpeed", speed.ToString());
+                    Redis.SetCacheData(deviceId + "_DataSatellites", satellites.ToString());
+                    Redis.SetCacheData(deviceId + "_DataDeviceBatteryVoltage", (((double)gpsData.IO_Elements_2B[67]) / 1000).ToString());
 
 
 
-                    var parkStartTime = Redis.GetCacheData(IMEI + "_ParkStartTime");
-                    var standbyStartTime = Redis.GetCacheData(IMEI + "_StandbyStartTime");
+                    var parkStartTime = Redis.GetCacheData(deviceId + "_ParkStartTime");
+                    var standbyStartTime = Redis.GetCacheData(deviceId + "_StandbyStartTime");
                     if (!String.IsNullOrEmpty(parkStartTime))
                         SaveStandByPoint(IMEI, deviceId, deviceTime);
                     if (!String.IsNullOrEmpty(standbyStartTime))
@@ -277,23 +288,23 @@ namespace GPS_Tracker
 
                 else if (timeStamp > redisTime && minTime < timeStamp)
                 {
-                    Redis.SetCacheData(IMEI + "_LastDataTime", deviceTime.ToString());
-                    var parkStartTime = Redis.GetCacheData(IMEI + "_ParkStartTime");
-                    var standbyStartTime = Redis.GetCacheData(IMEI + "_StandbyStartTime");
+                    Redis.SetCacheData(deviceId + "_LastDataTime", deviceTime.ToString());
+                    var parkStartTime = Redis.GetCacheData(deviceId + "_ParkStartTime");
+                    var standbyStartTime = Redis.GetCacheData(deviceId + "_StandbyStartTime");
                     if (!powerOn && String.IsNullOrEmpty(parkStartTime))
                     {
-                        Redis.SetCacheData(IMEI + "_ParkLat", latitude.ToString());
-                        Redis.SetCacheData(IMEI + "_ParkLong", longtitude.ToString());
-                        Redis.SetCacheData(IMEI + "_ParkStartTime", deviceTime.ToString());
+                        Redis.SetCacheData(deviceId + "_ParkLat", latitude.ToString());
+                        Redis.SetCacheData(deviceId + "_ParkLong", longtitude.ToString());
+                        Redis.SetCacheData(deviceId + "_ParkStartTime", deviceTime.ToString());
 
                         if (!String.IsNullOrEmpty(parkStartTime))
                             SaveStandByPoint(IMEI, deviceId, deviceTime);
                     }
                     if (powerOn && String.IsNullOrEmpty(standbyStartTime))
                     {
-                        Redis.SetCacheData(IMEI + "_StandbyLat", latitude.ToString());
-                        Redis.SetCacheData(IMEI + "_StandbyLong", longtitude.ToString());
-                        Redis.SetCacheData(IMEI + "_StandbyStartTime", deviceTime.ToString());
+                        Redis.SetCacheData(deviceId + "_StandbyLat", latitude.ToString());
+                        Redis.SetCacheData(deviceId + "_StandbyLong", longtitude.ToString());
+                        Redis.SetCacheData(deviceId + "_StandbyStartTime", deviceTime.ToString());
 
                         if (!String.IsNullOrEmpty(parkStartTime))
                             SaveParkPoint(IMEI, deviceId, deviceTime);
@@ -321,38 +332,52 @@ namespace GPS_Tracker
         }
         private void SaveParkPoint(string imei, short deviceId, DateTime endTime)
         {
+            var startTime = Redis.GetCacheData<DateTime>(deviceId + "_ParkStartTime");
             ParkPoint point = new ParkPoint()
             {
                 ParkDeviceId = deviceId,
-                ParkStartTime = Redis.GetCacheData<DateTime>(imei + "_ParkStartTime"),
+                ParkStartTime = startTime,
                 ParkEndTime = endTime,
-                ParkLatitude = Redis.GetCacheData<int>(imei + "_ParkLat"),
-                ParkLongitude = Redis.GetCacheData<int>(imei + "_ParkLong")
+                ParkLatitude = Redis.GetCacheData<int>(deviceId + "_ParkLat"),
+                ParkLongitude = Redis.GetCacheData<int>(deviceId + "_ParkLong")
             };
 
+            SqlParameter[] param = new SqlParameter[]{
+                    new SqlParameter("@DeviceId", deviceId)
+                    ,new SqlParameter("@ReportDate", endTime)
+                    ,new SqlParameter("@TotalParkTime", (endTime - startTime).TotalSeconds)
+                    };
+            db.Database.ExecuteSqlCommand("USP_Rpt_DailyPerformances_InsertOrUpdate @DeviceId, @ReportDate, @TotalParkTime", param);
 
-
-            Redis.KeyDelete(imei + "_ParkLat");
-            Redis.KeyDelete(imei + "_ParkLong");
-            Redis.KeyDelete(imei + "_ParkStartTime");
+            Redis.KeyDelete(deviceId + "_ParkLat");
+            Redis.KeyDelete(deviceId + "_ParkLong");
+            Redis.KeyDelete(deviceId + "_ParkStartTime");
             db.ParkPoints.Add(point);
         }
         private void SaveStandByPoint(string imei, short deviceId, DateTime endTime)
         {
+            var startTime = Redis.GetCacheData<DateTime>(deviceId + "_StandbyStartTime");
             StandbyPoint point = new StandbyPoint()
             {
                 StandbyDeviceId = deviceId,
-                StandbyStartTime = Redis.GetCacheData<DateTime>(imei + "_StandbyStartTime"),
+                StandbyStartTime = startTime,
                 StandbyEndTime = endTime,
-                StandbyLatitude = Redis.GetCacheData<int>(imei + "_StandbyLat"),
-                StandbyLongitude = Redis.GetCacheData<int>(imei + "_StandByLong")
+                StandbyLatitude = Redis.GetCacheData<int>(deviceId + "_StandbyLat"),
+                StandbyLongitude = Redis.GetCacheData<int>(deviceId + "_StandByLong")
             };
 
+            SqlParameter[] param = new SqlParameter[]{
+                    new SqlParameter("@DeviceId", deviceId)
+                    ,new SqlParameter("@ReportDate", endTime)
+                    ,new SqlParameter("@TotalStandByTime", (endTime - startTime).TotalSeconds)
+                    };
+            db.Database.ExecuteSqlCommand("USP_Rpt_DailyPerformances_InsertOrUpdate @DeviceId, @ReportDate, @TotalStandByTime", param);
 
 
-            Redis.KeyDelete(imei + "_StandbyLat");
-            Redis.KeyDelete(imei + "_StandbyLong");
-            Redis.KeyDelete(imei + "_StandbyStartTime");
+
+            Redis.KeyDelete(deviceId + "_StandbyLat");
+            Redis.KeyDelete(deviceId + "_StandbyLong");
+            Redis.KeyDelete(deviceId + "_StandbyStartTime");
             db.StandbyPoints.Add(point);
         }
         private int GetCRC16(byte[] buffer)

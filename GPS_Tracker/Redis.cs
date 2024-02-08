@@ -25,6 +25,7 @@ namespace GPS_Tracker
         public static bool KeyDelete(string key) => redis.KeyDelete(key);
         public static String GetCacheData(string key) => redis.StringGet(key);
         public static T GetCacheData<T>(string key) => (T)Convert.ChangeType(redis.StringGet(key), typeof(T));
-        
+        public static bool KeyExpire(string key, DateTime? date) => redis.KeyExpire(key, date);
+
     }
 }
