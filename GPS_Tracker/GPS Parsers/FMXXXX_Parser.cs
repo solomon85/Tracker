@@ -23,9 +23,7 @@ namespace GPS_Tracker
             string hexDataLength = string.Empty;
             receiveBytes.Skip(4).Take(4).ToList().ForEach(delegate (byte b) { hexDataLength += string.Format("{0:X2}", b); });
             int dataLength = Convert.ToInt32(hexDataLength, 16);
-            // byte[] test = receiveBytes.Skip(4).Take(4).ToArray();
-            // Array.Reverse(test);
-            // int dataLength = BitConverter.ToInt32(test, 0);
+
 
             //ShowDiagnosticInfo("Data Length: -----".PadRight(40, '-') + " " + dataLength);
             int codecId = Convert.ToInt32(receiveBytes.Skip(8).Take(1).ToList()[0]);
