@@ -2,6 +2,7 @@
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Device.Location;
 using System.Linq;
@@ -161,14 +162,20 @@ namespace GPS_Tracker
                 var minTime = DateTimeOffset.Now.AddDays(-365).ToUnixTimeSeconds();
 
                 var powerOn = false;
-                if (gpsData.IO_Elements_1B[1] == 1 && (((double)gpsData.IO_Elements_2B[66]) / 1000) > 13.5)
+                try
                 {
-                    Redis.SetCacheData(deviceId + "_VehiclePower", "1");
-                    powerOn = true;
+                    if (/*gpsData.IO_Elements_1B[1] == 1 &&*/ (((double)gpsData.IO_Elements_2B[66]) / 1000) > 13.5)
+                    {
+                        Redis.SetCacheData(deviceId + "_VehiclePower", "1");
+                        powerOn = true;
+                    }
+                    else
+                        Redis.SetCacheData(deviceId + "_VehiclePower", "0");
                 }
-                else
+                catch (Exception ex)
+                {
                     Redis.SetCacheData(deviceId + "_VehiclePower", "0");
-
+                }
 
 
                 if (timeStamp > redisTime && (latitude != redisLat || longtitude != redisLon) && minTime < timeStamp)
@@ -206,10 +213,22 @@ namespace GPS_Tracker
                             SqlParameter[] param = new SqlParameter[]{
                             new SqlParameter("@DeviceId", deviceId)
                             ,new SqlParameter("@ReportDate", deviceTime)
-                            ,new SqlParameter("@TotalMovingDistance", newData.DataDistanceTraveled)
                             ,new SqlParameter("@TotalMovingTime", (timeStamp - redisTime) / 1000)
+                            ,new SqlParameter("@TotalMovingDistance", newData.DataDistanceTraveled)
+                            ,new SqlParameter("@TotalParkTime", DBNull.Value)
+                            ,new SqlParameter("@TotalStandByTime", DBNull.Value)
+                            ,new SqlParameter("@TotalTowingDistance", DBNull.Value)
+                            ,new SqlParameter("@TotalTowingTime", DBNull.Value)
                             };
-                            db.Database.ExecuteSqlCommand("USP_Rpt_DailyPerformances_InsertOrUpdate @DeviceId, @ReportDate, @TotalMovingTime, @TotalMovingDistance", param);
+                            db.Database.ExecuteSqlCommand(@"USP_Rpt_DailyPerformances_InsertOrUpdate 
+                                                            @DeviceId, 
+                                                            @ReportDate, 
+                                                            @TotalMovingTime,
+                                                            @TotalMovingDistance,
+                                                            @TotalParkTime,
+                                                            @TotalStandByTime,
+                                                            @TotalTowingTime, 
+                                                            @TotalTowingDistance", param);
                         }
                     }
                     else
@@ -245,10 +264,22 @@ namespace GPS_Tracker
                             SqlParameter[] param = new SqlParameter[]{
                             new SqlParameter("@DeviceId", deviceId)
                             ,new SqlParameter("@ReportDate", deviceTime)
+                            ,new SqlParameter("@TotalMovingTime", DBNull.Value)
+                            ,new SqlParameter("@TotalMovingDistance", DBNull.Value)
+                            ,new SqlParameter("@TotalParkTime", DBNull.Value)
+                            ,new SqlParameter("@TotalStandByTime", DBNull.Value)
                             ,new SqlParameter("@TotalTowingDistance", newData.TowingDataDistanceTraveled)
                             ,new SqlParameter("@TotalTowingTime", (timeStamp - redisTime) / 1000)
                             };
-                            db.Database.ExecuteSqlCommand("USP_Rpt_DailyPerformances_InsertOrUpdate @DeviceId, @ReportDate, @TotalTowingTime, @TotalTowingDistance", param);
+                            db.Database.ExecuteSqlCommand(@"USP_Rpt_DailyPerformances_InsertOrUpdate 
+                                                            @DeviceId, 
+                                                            @ReportDate, 
+                                                            @TotalMovingTime,
+                                                            @TotalMovingDistance,
+                                                            @TotalParkTime,
+                                                            @TotalStandByTime,
+                                                            @TotalTowingTime, 
+                                                            @TotalTowingDistance", param);
                         }
                     }
 
@@ -341,11 +372,24 @@ namespace GPS_Tracker
             };
 
             SqlParameter[] param = new SqlParameter[]{
-                    new SqlParameter("@DeviceId", deviceId)
-                    ,new SqlParameter("@ReportDate", endTime)
-                    ,new SqlParameter("@TotalParkTime", (endTime - startTime).TotalSeconds)
-                    };
-            db.Database.ExecuteSqlCommand("USP_Rpt_DailyPerformances_InsertOrUpdate @DeviceId, @ReportDate, @TotalParkTime", param);
+                            new SqlParameter("@DeviceId", deviceId)
+                            ,new SqlParameter("@ReportDate", endTime)
+                            ,new SqlParameter("@TotalMovingTime", DBNull.Value)
+                            ,new SqlParameter("@TotalMovingDistance", DBNull.Value)
+                            ,new SqlParameter("@TotalParkTime", (endTime - startTime).TotalSeconds)
+                            ,new SqlParameter("@TotalStandByTime", DBNull.Value)
+                            ,new SqlParameter("@TotalTowingDistance", DBNull.Value)
+                            ,new SqlParameter("@TotalTowingTime", DBNull.Value)
+                            };
+            db.Database.ExecuteSqlCommand(@"USP_Rpt_DailyPerformances_InsertOrUpdate 
+                                                            @DeviceId, 
+                                                            @ReportDate, 
+                                                            @TotalMovingTime,
+                                                            @TotalMovingDistance,
+                                                            @TotalParkTime,
+                                                            @TotalStandByTime,
+                                                            @TotalTowingTime, 
+                                                            @TotalTowingDistance", param);
 
             Redis.KeyDelete(deviceId + "_ParkLat");
             Redis.KeyDelete(deviceId + "_ParkLong");
@@ -364,14 +408,26 @@ namespace GPS_Tracker
                 StandbyLongitude = Redis.GetCacheData<int>(deviceId + "_StandByLong")
             };
 
+
             SqlParameter[] param = new SqlParameter[]{
-                    new SqlParameter("@DeviceId", deviceId)
-                    ,new SqlParameter("@ReportDate", endTime)
-                    ,new SqlParameter("@TotalStandByTime", (endTime - startTime).TotalSeconds)
-                    };
-            db.Database.ExecuteSqlCommand("USP_Rpt_DailyPerformances_InsertOrUpdate @DeviceId, @ReportDate, @TotalStandByTime", param);
-
-
+                            new SqlParameter("@DeviceId", deviceId)
+                            ,new SqlParameter("@ReportDate", endTime)
+                            ,new SqlParameter("@TotalMovingTime", DBNull.Value)
+                            ,new SqlParameter("@TotalMovingDistance", DBNull.Value)
+                            ,new SqlParameter("@TotalParkTime", DBNull.Value)
+                            ,new SqlParameter("@TotalStandByTime", (endTime - startTime).TotalSeconds)
+                            ,new SqlParameter("@TotalTowingDistance", DBNull.Value)
+                            ,new SqlParameter("@TotalTowingTime", DBNull.Value)
+                            };
+            db.Database.ExecuteSqlCommand(@"USP_Rpt_DailyPerformances_InsertOrUpdate 
+                                                            @DeviceId, 
+                                                            @ReportDate, 
+                                                            @TotalMovingTime,
+                                                            @TotalMovingDistance,
+                                                            @TotalParkTime,
+                                                            @TotalStandByTime,
+                                                            @TotalTowingTime, 
+                                                            @TotalTowingDistance", param);
 
             Redis.KeyDelete(deviceId + "_StandbyLat");
             Redis.KeyDelete(deviceId + "_StandbyLong");
