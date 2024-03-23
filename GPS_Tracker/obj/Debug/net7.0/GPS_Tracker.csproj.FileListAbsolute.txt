@@ -48,7 +48,6 @@ C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\System.Device.P
 C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\System.Diagnostics.EventLog.dll
 C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\System.Drawing.Common.dll
-C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\System.IO.Pipelines.dll
 C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\System.Security.Permissions.dll
 C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\System.Text.Encodings.Web.dll
@@ -73,3 +72,10 @@ C:\Users\rezay\source\repos\Tracker\GPS_Tracker\obj\Debug\net7.0\refint\GPS_Trac
 C:\Users\rezay\source\repos\Tracker\GPS_Tracker\obj\Debug\net7.0\GPS_Tracker.pdb
 C:\Users\rezay\source\repos\Tracker\GPS_Tracker\obj\Debug\net7.0\GPS_Tracker.genruntimeconfig.cache
 C:\Users\rezay\source\repos\Tracker\GPS_Tracker\obj\Debug\net7.0\ref\GPS_Tracker.dll
+C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\CorePush.dll
+C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\BouncyCastle.Crypto.dll
+C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\rezay\source\repos\Tracker\GPS_Tracker\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll

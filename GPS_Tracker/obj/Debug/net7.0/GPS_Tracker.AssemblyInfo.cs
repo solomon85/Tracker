@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GPS_Tracker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e556af3cf0ce7dff57acc30538356e17eedf574a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+071b08f576e8c16f0f93990183c3f9f8356079de")]
 [assembly: System.Reflection.AssemblyProductAttribute("GPS_Tracker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GPS_Tracker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
