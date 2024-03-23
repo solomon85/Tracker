@@ -22,7 +22,7 @@ namespace GPS_Tracker.Models
             if (string.IsNullOrEmpty(conStr))
             {
                 Console.WriteLine("You most set connection string in user secret file.");
-                throw new Exception("ou most set connection string in user secret file.");
+                throw new Exception("You most set connection string in user secret file.");
             }
             this.Database.Connection.ConnectionString = conStr;
         }
@@ -39,7 +39,7 @@ namespace GPS_Tracker.Models
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.Configurations.Add(new Customer.Configuration());
+            modelBuilder.Configurations.Add(new TowingData.Configuration());
         }
 
 
