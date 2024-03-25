@@ -282,7 +282,22 @@ namespace GPS_Tracker
                                                             @TotalTowingDistance", param);
                         }
                     }
-
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        ShowDiagnosticInfo("Exception in CRUD : " + ex.Message);
+                        Log l = new Log()
+                        {
+                            Date = DateTime.Now,
+                            LogType = "CRUD Exception",
+                            LogContent = ex.Message + (ex.InnerException != null ? "\n" + ex.InnerException.Message : "")
+                        };
+                        db.Logs.Add(l);
+                        db.SaveChanges();
+                    }
 
                     Redis.SetCacheData(deviceId + "_DataTimeStamp", timeStamp.ToString());
                     Redis.SetCacheData(deviceId + "_DataLat", latitude.ToString());
@@ -303,14 +318,7 @@ namespace GPS_Tracker
                         SaveStandByPoint(IMEI, deviceId, deviceTime);
 
 
-                    try
-                    {
-                        db.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        ShowDiagnosticInfo("Exception in CRUD : " + ex.Message);
-                    }
+
 
                     gpsData.Priority = (byte)priority;
                 }
@@ -395,6 +403,20 @@ namespace GPS_Tracker
             Redis.KeyDelete(deviceId + "_ParkLong");
             Redis.KeyDelete(deviceId + "_ParkStartTime");
             db.ParkPoints.Add(point);
+
+            try { db.SaveChanges(); }
+            catch (Exception ex)
+            {
+                ShowDiagnosticInfo("Exception in SaveParkPoint : " + ex.Message);
+                Log l = new Log()
+                {
+                    Date = DateTime.Now,
+                    LogType = "SaveParkPoint Exception",
+                    LogContent = ex.Message + (ex.InnerException != null ? "\n" + ex.InnerException.Message : "")
+                };
+                db.Logs.Add(l);
+                db.SaveChanges();
+            }
         }
         private void SaveStandByPoint(string imei, short deviceId, DateTime endTime)
         {
@@ -433,6 +455,21 @@ namespace GPS_Tracker
             Redis.KeyDelete(deviceId + "_StandbyLong");
             Redis.KeyDelete(deviceId + "_StandbyStartTime");
             db.StandbyPoints.Add(point);
+
+
+            try { db.SaveChanges(); }
+            catch (Exception ex)
+            {
+                ShowDiagnosticInfo("Exception in SaveParkPoint : " + ex.Message);
+                Log l = new Log()
+                {
+                    Date = DateTime.Now,
+                    LogType = "SaveParkPoint Exception",
+                    LogContent = ex.Message + (ex.InnerException != null ? "\n" + ex.InnerException.Message : "")
+                };
+                db.Logs.Add(l);
+                db.SaveChanges();
+            }
         }
         private int GetCRC16(byte[] buffer)
         {
@@ -472,7 +509,17 @@ namespace GPS_Tracker
 
                 result = (short)point1.GetDistanceTo(point2);
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                Log l = new Log()
+                {
+                    Date = DateTime.Now,
+                    LogType = "CalculateDistance Exception",
+                    LogContent = ex.Message + (ex.InnerException != null ? "\n" + ex.InnerException.Message : "")
+                };
+                db.Logs.Add(l);
+                db.SaveChanges();
+            }
             return result;
         }
     }

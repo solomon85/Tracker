@@ -49,6 +49,7 @@ namespace GPS_Tracker.Models
         public DbSet<ParkPoint> ParkPoints { get; set; }
         public DbSet<StandbyPoint> StandbyPoints { get; set; }
         public DbSet<Rpt_DailyPerformance> Rpt_DailyPerformances { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
     }
 }
