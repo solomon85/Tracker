@@ -15,10 +15,14 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 =======
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b92827130b210f6034886f3c126b52bd4ec4593")]
 >>>>>>> e43832506b787cc01c3f0d906a4764b7e0ef7350
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e4f40689b6578ab8ffe929b517aa0b2298cbb40")]
+>>>>>>> 2728ab7882b916cba695c2836a53edaa91f52d2b
 [assembly: System.Reflection.AssemblyProductAttribute("GPS_Tracker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GPS_Tracker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
