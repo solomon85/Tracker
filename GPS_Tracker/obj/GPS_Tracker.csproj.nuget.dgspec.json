@@ -1,25 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "/var/www/html/Tracker/GPS_Tracker/GPS_Tracker.csproj": {}
+    "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\GPS_Tracker.csproj": {}
   },
   "projects": {
-    "/var/www/html/Tracker/GPS_Tracker/GPS_Tracker.csproj": {
+    "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\GPS_Tracker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/var/www/html/Tracker/GPS_Tracker/GPS_Tracker.csproj",
+        "projectUniqueName": "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\GPS_Tracker.csproj",
         "projectName": "GPS_Tracker",
-        "projectPath": "/var/www/html/Tracker/GPS_Tracker/GPS_Tracker.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/var/www/html/Tracker/GPS_Tracker/obj/",
+        "projectPath": "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\GPS_Tracker.csproj",
+        "packagesPath": "C:\\Users\\rezay\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\rezay\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\Nugets": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -56,7 +59,7 @@
             },
             "StackExchange.Redis": {
               "target": "Package",
-              "version": "[2.7.17, )"
+              "version": "[2.7.33, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -91,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.405/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
