@@ -178,127 +178,52 @@ namespace GPS_Tracker
                 }
 
 
-                if (timeStamp > redisTime && (latitude != redisLat || longtitude != redisLon) && minTime < timeStamp)
+                Data newData = new Data()
                 {
-                    if (powerOn)
+                    DeviceId = deviceId,
+                    DataDeviceTime = deviceTime,
+                    DataServerTime = DateTime.Now,
+                    DataLongitude = longtitude,
+                    DataLatitude = latitude,
+                    DataAltitude = altitude,
+                    DataAngel = angle,
+                    DataSpeed = (byte)speed,
+                    DataSatellites = satellites,
+
+
+                    DataDigitalIn = Convert.ToBoolean(gpsData.IO_Elements_1B[1]),/////////
+                    DataAnalogIn = gpsData.IO_Elements_2B[9],////////
+                    DataDeviceBatteryVoltage = (((double)gpsData.IO_Elements_2B[67]) / 1000),
+                    DataVehicleBatteryVoltage = (((double)gpsData.IO_Elements_2B[66]) / 1000),
+                    DataGSMState = gpsData.IO_Elements_1B[21],
+                    DataDeviceBatteryPercent = gpsData.IO_Elements_1B[113],
+                    DataCellId = gpsData.IO_Elements_2B[205],
+                    DataAreaCode = gpsData.IO_Elements_2B[206],
+                    DataGSMOperatorCode = (short)gpsData.IO_Elements_4B[241],
+                    DataDeviceDistanceTraveled = (short)gpsData.IO_Elements_4B[199],
+                    DataDistanceTraveled = CalculateDistance(redisLat, redisLon, latitude, longtitude),
+                };
+                db.Data.Add(newData);
+
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    ShowDiagnosticInfo("Exception in CRUD : " + ex.Message);
+                    Log l = new Log()
                     {
-                        Data newData = new Data()
-                        {
-                            DeviceId = deviceId,
-                            DataDeviceTime = deviceTime,
-                            DataServerTime = DateTime.Now,
-                            DataLongitude = longtitude,
-                            DataLatitude = latitude,
-                            DataAltitude = altitude,
-                            DataAngel = angle,
-                            DataSpeed = (byte)speed,
-                            DataSatellites = satellites,
+                        Date = DateTime.Now,
+                        LogType = "CRUD Exception",
+                        LogContent = ex.Message + (ex.InnerException != null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "")
+                    };
+                    db.Logs.Add(l);
+                    db.SaveChanges();
+                }
 
-
-                            DataDigitalIn = Convert.ToBoolean(gpsData.IO_Elements_1B[1]),/////////
-                            DataAnalogIn = gpsData.IO_Elements_2B[9],////////
-                            DataDeviceBatteryVoltage = (((double)gpsData.IO_Elements_2B[67]) / 1000),
-                            DataVehicleBatteryVoltage = (((double)gpsData.IO_Elements_2B[66]) / 1000),
-                            DataGSMState = gpsData.IO_Elements_1B[21],
-                            DataDeviceBatteryPercent = gpsData.IO_Elements_1B[113],
-                            DataCellId = gpsData.IO_Elements_2B[205],
-                            DataAreaCode = gpsData.IO_Elements_2B[206],
-                            DataGSMOperatorCode = (short)gpsData.IO_Elements_4B[241],
-                            DataDeviceDistanceTraveled = (short)gpsData.IO_Elements_4B[199],
-                            DataDistanceTraveled = CalculateDistance(redisLat, redisLon, latitude, longtitude),
-                        };
-                        db.Data.Add(newData);
-                        if (redisTime > 0)
-                        {
-                            SqlParameter[] param = new SqlParameter[]{
-                            new SqlParameter("@DeviceId", deviceId)
-                            ,new SqlParameter("@ReportDate", deviceTime)
-                            ,new SqlParameter("@TotalMovingTime", (timeStamp - redisTime) / 1000)
-                            ,new SqlParameter("@TotalMovingDistance", newData.DataDistanceTraveled)
-                            ,new SqlParameter("@TotalParkTime", DBNull.Value)
-                            ,new SqlParameter("@TotalStandByTime", DBNull.Value)
-                            ,new SqlParameter("@TotalTowingDistance", DBNull.Value)
-                            ,new SqlParameter("@TotalTowingTime", DBNull.Value)
-                            };
-                            db.Database.ExecuteSqlCommand(@"USP_Rpt_DailyPerformances_InsertOrUpdate 
-                                                            @DeviceId, 
-                                                            @ReportDate, 
-                                                            @TotalMovingTime,
-                                                            @TotalMovingDistance,
-                                                            @TotalParkTime,
-                                                            @TotalStandByTime,
-                                                            @TotalTowingTime, 
-                                                            @TotalTowingDistance", param);
-                        }
-                    }
-                    else
-                    {
-                        TowingData newData = new TowingData()
-                        {
-                            DeviceId = deviceId,
-                            TowingDataDeviceTime = deviceTime,
-                            TowingDataServerTime = DateTime.Now,
-                            TowingDataLongitude = longtitude,
-                            TowingDataLatitude = latitude,
-                            TowingDataAltitude = altitude,
-                            TowingDataAngel = angle,
-                            TowingDataSpeed = (byte)speed,
-                            TowingDataSatellites = satellites,
-
-
-                            TowingDataDigitalIn = Convert.ToBoolean(gpsData.IO_Elements_1B[1]),/////////
-                            TowingDataAnalogIn = gpsData.IO_Elements_2B[9],////////
-                            TowingDataDeviceBatteryVoltage = (((double)gpsData.IO_Elements_2B[67]) / 1000),
-                            TowingDataVehicleBatteryVoltage = (((double)gpsData.IO_Elements_2B[66]) / 1000),
-                            TowingDataGSMState = gpsData.IO_Elements_1B[21],
-                            TowingDataDeviceBatteryPercent = gpsData.IO_Elements_1B[113],
-                            TowingDataCellId = gpsData.IO_Elements_2B[205],
-                            TowingDataAreaCode = gpsData.IO_Elements_2B[206],
-                            TowingDataGSMOperatorCode = (short)gpsData.IO_Elements_4B[241],
-                            TowingDataDeviceDistanceTraveled = (short)gpsData.IO_Elements_4B[199],
-                            TowingDataDistanceTraveled = CalculateDistance(redisLat, redisLon, latitude, longtitude),
-                        };
-                        db.TowingData.Add(newData);
-                        if (redisTime > 0)
-                        {
-                            SqlParameter[] param = new SqlParameter[]{
-                            new SqlParameter("@DeviceId", deviceId)
-                            ,new SqlParameter("@ReportDate", deviceTime)
-                            ,new SqlParameter("@TotalMovingTime", DBNull.Value)
-                            ,new SqlParameter("@TotalMovingDistance", DBNull.Value)
-                            ,new SqlParameter("@TotalParkTime", DBNull.Value)
-                            ,new SqlParameter("@TotalStandByTime", DBNull.Value)
-                            ,new SqlParameter("@TotalTowingDistance", newData.TowingDataDistanceTraveled)
-                            ,new SqlParameter("@TotalTowingTime", (timeStamp - redisTime) / 1000)
-                            };
-                            db.Database.ExecuteSqlCommand(@"USP_Rpt_DailyPerformances_InsertOrUpdate 
-                                                            @DeviceId, 
-                                                            @ReportDate, 
-                                                            @TotalMovingTime,
-                                                            @TotalMovingDistance,
-                                                            @TotalParkTime,
-                                                            @TotalStandByTime,
-                                                            @TotalTowingTime, 
-                                                            @TotalTowingDistance", param);
-                        }
-                    }
-                    try
-                    {
-                        db.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        ShowDiagnosticInfo("Exception in CRUD : " + ex.Message);
-                        Log l = new Log()
-                        {
-                            Date = DateTime.Now,
-                            LogType = "CRUD Exception",
-                            LogContent = ex.Message + (ex.InnerException != null ? "\n" + ex.InnerException.Message : "")
-                        };
-                        db.Logs.Add(l);
-                        db.SaveChanges();
-                    }
-
+                if (timeStamp > redisTime && minTime < timeStamp)
+                {
                     Redis.SetCacheData(deviceId + "_DataTimeStamp", timeStamp.ToString());
                     Redis.SetCacheData(deviceId + "_DataLat", latitude.ToString());
                     Redis.SetCacheData(deviceId + "_DataLong", longtitude.ToString());
@@ -307,47 +232,178 @@ namespace GPS_Tracker
                     Redis.SetCacheData(deviceId + "_DataSpeed", speed.ToString());
                     Redis.SetCacheData(deviceId + "_DataSatellites", satellites.ToString());
                     Redis.SetCacheData(deviceId + "_DataDeviceBatteryVoltage", (((double)gpsData.IO_Elements_2B[67]) / 1000).ToString());
-
-
-
-                    var parkStartTime = Redis.GetCacheData(deviceId + "_ParkStartTime");
-                    var standbyStartTime = Redis.GetCacheData(deviceId + "_StandbyStartTime");
-                    if (!String.IsNullOrEmpty(parkStartTime))
-                        SaveStandByPoint(IMEI, deviceId, deviceTime);
-                    if (!String.IsNullOrEmpty(standbyStartTime))
-                        SaveStandByPoint(IMEI, deviceId, deviceTime);
-
-
-
-
-                    gpsData.Priority = (byte)priority;
                 }
 
-                else if (timeStamp > redisTime && minTime < timeStamp)
-                {
-                    Redis.SetCacheData(deviceId + "_LastDataTime", deviceTime.ToString());
-                    var parkStartTime = Redis.GetCacheData(deviceId + "_ParkStartTime");
-                    var standbyStartTime = Redis.GetCacheData(deviceId + "_StandbyStartTime");
-                    if (!powerOn && String.IsNullOrEmpty(parkStartTime))
-                    {
-                        Redis.SetCacheData(deviceId + "_ParkLat", latitude.ToString());
-                        Redis.SetCacheData(deviceId + "_ParkLong", longtitude.ToString());
-                        Redis.SetCacheData(deviceId + "_ParkStartTime", deviceTime.ToString());
+                //if (timeStamp > redisTime && (latitude != redisLat || longtitude != redisLon) && minTime < timeStamp)
+                //{
+                //    if (powerOn)
+                //    {
+                //        Data newData = new Data()
+                //        {
+                //            DeviceId = deviceId,
+                //            DataDeviceTime = deviceTime,
+                //            DataServerTime = DateTime.Now,
+                //            DataLongitude = longtitude,
+                //            DataLatitude = latitude,
+                //            DataAltitude = altitude,
+                //            DataAngel = angle,
+                //            DataSpeed = (byte)speed,
+                //            DataSatellites = satellites,
 
-                        if (!String.IsNullOrEmpty(parkStartTime))
-                            SaveStandByPoint(IMEI, deviceId, deviceTime);
-                    }
-                    if (powerOn && String.IsNullOrEmpty(standbyStartTime))
-                    {
-                        Redis.SetCacheData(deviceId + "_StandbyLat", latitude.ToString());
-                        Redis.SetCacheData(deviceId + "_StandbyLong", longtitude.ToString());
-                        Redis.SetCacheData(deviceId + "_StandbyStartTime", deviceTime.ToString());
 
-                        if (!String.IsNullOrEmpty(parkStartTime))
-                            SaveParkPoint(IMEI, deviceId, deviceTime);
-                    }
+                //            DataDigitalIn = Convert.ToBoolean(gpsData.IO_Elements_1B[1]),/////////
+                //            DataAnalogIn = gpsData.IO_Elements_2B[9],////////
+                //            DataDeviceBatteryVoltage = (((double)gpsData.IO_Elements_2B[67]) / 1000),
+                //            DataVehicleBatteryVoltage = (((double)gpsData.IO_Elements_2B[66]) / 1000),
+                //            DataGSMState = gpsData.IO_Elements_1B[21],
+                //            DataDeviceBatteryPercent = gpsData.IO_Elements_1B[113],
+                //            DataCellId = gpsData.IO_Elements_2B[205],
+                //            DataAreaCode = gpsData.IO_Elements_2B[206],
+                //            DataGSMOperatorCode = (short)gpsData.IO_Elements_4B[241],
+                //            DataDeviceDistanceTraveled = (short)gpsData.IO_Elements_4B[199],
+                //            DataDistanceTraveled = CalculateDistance(redisLat, redisLon, latitude, longtitude),
+                //        };
+                //        db.Data.Add(newData);
+                //        if (redisTime > 0)
+                //        {
+                //            SqlParameter[] param = new SqlParameter[]{
+                //            new SqlParameter("@DeviceId", deviceId)
+                //            ,new SqlParameter("@ReportDate", deviceTime)
+                //            ,new SqlParameter("@TotalMovingTime", (timeStamp - redisTime) / 1000)
+                //            ,new SqlParameter("@TotalMovingDistance", newData.DataDistanceTraveled)
+                //            ,new SqlParameter("@TotalParkTime", DBNull.Value)
+                //            ,new SqlParameter("@TotalStandByTime", DBNull.Value)
+                //            ,new SqlParameter("@TotalTowingDistance", DBNull.Value)
+                //            ,new SqlParameter("@TotalTowingTime", DBNull.Value)
+                //            };
+                //            db.Database.ExecuteSqlCommand(@"USP_Rpt_DailyPerformances_InsertOrUpdate 
+                //                                            @DeviceId, 
+                //                                            @ReportDate, 
+                //                                            @TotalMovingTime,
+                //                                            @TotalMovingDistance,
+                //                                            @TotalParkTime,
+                //                                            @TotalStandByTime,
+                //                                            @TotalTowingTime, 
+                //                                            @TotalTowingDistance", param);
+                //        }
+                //    }
+                //    else
+                //    {
+                //        TowingData newData = new TowingData()
+                //        {
+                //            DeviceId = deviceId,
+                //            TowingDataDeviceTime = deviceTime,
+                //            TowingDataServerTime = DateTime.Now,
+                //            TowingDataLongitude = longtitude,
+                //            TowingDataLatitude = latitude,
+                //            TowingDataAltitude = altitude,
+                //            TowingDataAngel = angle,
+                //            TowingDataSpeed = (byte)speed,
+                //            TowingDataSatellites = satellites,
 
-                }
+
+                //            TowingDataDigitalIn = Convert.ToBoolean(gpsData.IO_Elements_1B[1]),/////////
+                //            TowingDataAnalogIn = gpsData.IO_Elements_2B[9],////////
+                //            TowingDataDeviceBatteryVoltage = (((double)gpsData.IO_Elements_2B[67]) / 1000),
+                //            TowingDataVehicleBatteryVoltage = (((double)gpsData.IO_Elements_2B[66]) / 1000),
+                //            TowingDataGSMState = gpsData.IO_Elements_1B[21],
+                //            TowingDataDeviceBatteryPercent = gpsData.IO_Elements_1B[113],
+                //            TowingDataCellId = gpsData.IO_Elements_2B[205],
+                //            TowingDataAreaCode = gpsData.IO_Elements_2B[206],
+                //            TowingDataGSMOperatorCode = (short)gpsData.IO_Elements_4B[241],
+                //            TowingDataDeviceDistanceTraveled = (short)gpsData.IO_Elements_4B[199],
+                //            TowingDataDistanceTraveled = CalculateDistance(redisLat, redisLon, latitude, longtitude),
+                //        };
+                //        db.TowingData.Add(newData);
+                //        if (redisTime > 0)
+                //        {
+                //            SqlParameter[] param = new SqlParameter[]{
+                //            new SqlParameter("@DeviceId", deviceId)
+                //            ,new SqlParameter("@ReportDate", deviceTime)
+                //            ,new SqlParameter("@TotalMovingTime", DBNull.Value)
+                //            ,new SqlParameter("@TotalMovingDistance", DBNull.Value)
+                //            ,new SqlParameter("@TotalParkTime", DBNull.Value)
+                //            ,new SqlParameter("@TotalStandByTime", DBNull.Value)
+                //            ,new SqlParameter("@TotalTowingDistance", newData.TowingDataDistanceTraveled)
+                //            ,new SqlParameter("@TotalTowingTime", (timeStamp - redisTime) / 1000)
+                //            };
+                //            db.Database.ExecuteSqlCommand(@"USP_Rpt_DailyPerformances_InsertOrUpdate 
+                //                                            @DeviceId, 
+                //                                            @ReportDate, 
+                //                                            @TotalMovingTime,
+                //                                            @TotalMovingDistance,
+                //                                            @TotalParkTime,
+                //                                            @TotalStandByTime,
+                //                                            @TotalTowingTime, 
+                //                                            @TotalTowingDistance", param);
+                //        }
+                //    }
+                //    try
+                //    {
+                //        db.SaveChanges();
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        ShowDiagnosticInfo("Exception in CRUD : " + ex.Message);
+                //        Log l = new Log()
+                //        {
+                //            Date = DateTime.Now,
+                //            LogType = "CRUD Exception",
+                //            LogContent = ex.Message + (ex.InnerException!= null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "")
+                //        };
+                //        db.Logs.Add(l);
+                //        db.SaveChanges();
+                //    }
+
+                //                Redis.SetCacheData(deviceId + "_DataTimeStamp", timeStamp.ToString());
+                //                Redis.SetCacheData(deviceId + "_DataLat", latitude.ToString());
+                //                Redis.SetCacheData(deviceId + "_DataLong", longtitude.ToString());
+                //                Redis.SetCacheData(deviceId + "_DataAlt", altitude.ToString());
+                //                Redis.SetCacheData(deviceId + "_DataAngle", angle.ToString());
+                //                Redis.SetCacheData(deviceId + "_DataSpeed", speed.ToString());
+                //                Redis.SetCacheData(deviceId + "_DataSatellites", satellites.ToString());
+                //                Redis.SetCacheData(deviceId + "_DataDeviceBatteryVoltage", (((double)gpsData.IO_Elements_2B[67]) / 1000).ToString());
+
+
+
+                //    var parkStartTime = Redis.GetCacheData(deviceId + "_ParkStartTime");
+                //    var standbyStartTime = Redis.GetCacheData(deviceId + "_StandbyStartTime");
+                //    if (!String.IsNullOrEmpty(parkStartTime))
+                //        SaveStandByPoint(IMEI, deviceId, deviceTime);
+                //    if (!String.IsNullOrEmpty(standbyStartTime))
+                //        SaveStandByPoint(IMEI, deviceId, deviceTime);
+
+
+
+
+                //    gpsData.Priority = (byte)priority;
+                //}
+
+                //else if (timeStamp > redisTime && minTime < timeStamp)
+                //{
+                //    Redis.SetCacheData(deviceId + "_LastDataTime", deviceTime.ToString());
+                //    var parkStartTime = Redis.GetCacheData(deviceId + "_ParkStartTime");
+                //    var standbyStartTime = Redis.GetCacheData(deviceId + "_StandbyStartTime");
+                //    if (!powerOn && String.IsNullOrEmpty(parkStartTime))
+                //    {
+                //        Redis.SetCacheData(deviceId + "_ParkLat", latitude.ToString());
+                //        Redis.SetCacheData(deviceId + "_ParkLong", longtitude.ToString());
+                //        Redis.SetCacheData(deviceId + "_ParkStartTime", deviceTime.ToString());
+
+                //        if (!String.IsNullOrEmpty(parkStartTime))
+                //            SaveStandByPoint(IMEI, deviceId, deviceTime);
+                //    }
+                //    if (powerOn && String.IsNullOrEmpty(standbyStartTime))
+                //    {
+                //        Redis.SetCacheData(deviceId + "_StandbyLat", latitude.ToString());
+                //        Redis.SetCacheData(deviceId + "_StandbyLong", longtitude.ToString());
+                //        Redis.SetCacheData(deviceId + "_StandbyStartTime", deviceTime.ToString());
+
+                //        if (!String.IsNullOrEmpty(parkStartTime))
+                //            SaveParkPoint(IMEI, deviceId, deviceTime);
+                //    }
+
+                //}
                 //ShowDiagnosticInfo("Timestamp: -----".PadRight(40, '-') + " " + deviceTime.ToLongDateString() + " " + deviceTime.ToLongTimeString());
             }
             //CRC for check of data correction and request again data from device if it not correct

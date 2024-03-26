@@ -792,7 +792,7 @@
           }
         }
       },
-      "StackExchange.Redis/2.7.17": {
+      "StackExchange.Redis/2.7.33": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "6.0.0",
@@ -2682,10 +2682,10 @@
         "version.txt"
       ]
     },
-    "StackExchange.Redis/2.7.17": {
-      "sha512": "PduekHww3CrCBr1ebIPX4k4zdah9wjJ4AQZXfp+JfGJQfwf8s1SHSY7kthDi9MP0ULcYrNw4xnbRXFMbCryIig==",
+    "StackExchange.Redis/2.7.33": {
+      "sha512": "2kCX5fvhEE824a4Ab5Imyi8DRuGuTxyklXV01kegkRpsWJcPmO6+GAQ+HegKxvXAxlXZ8yaRspvWJ8t3mMClfQ==",
       "type": "package",
-      "path": "stackexchange.redis/2.7.17",
+      "path": "stackexchange.redis/2.7.33",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2699,7 +2699,7 @@
         "lib/netcoreapp3.1/StackExchange.Redis.xml",
         "lib/netstandard2.0/StackExchange.Redis.dll",
         "lib/netstandard2.0/StackExchange.Redis.xml",
-        "stackexchange.redis.2.7.17.nupkg.sha512",
+        "stackexchange.redis.2.7.33.nupkg.sha512",
         "stackexchange.redis.nuspec"
       ]
     },
@@ -3467,7 +3467,7 @@
       "Microsoft.Extensions.Configuration.UserSecrets >= 8.0.0",
       "Microsoft.Extensions.Hosting >= 8.0.0",
       "Newtonsoft.Json >= 13.0.3",
-      "StackExchange.Redis >= 2.7.17",
+      "StackExchange.Redis >= 2.7.33",
       "Swashbuckle.AspNetCore >= 6.5.0",
       "System.Data.SqlClient >= 4.8.6",
       "System.Device.Location.Portable >= 1.0.0",
@@ -3475,24 +3475,27 @@
     ]
   },
   "packageFolders": {
-    "/root/.nuget/packages/": {}
+    "C:\\Users\\rezay\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/var/www/html/Tracker/GPS_Tracker/GPS_Tracker.csproj",
+      "projectUniqueName": "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\GPS_Tracker.csproj",
       "projectName": "GPS_Tracker",
-      "projectPath": "/var/www/html/Tracker/GPS_Tracker/GPS_Tracker.csproj",
-      "packagesPath": "/root/.nuget/packages/",
-      "outputPath": "/var/www/html/Tracker/GPS_Tracker/obj/",
+      "projectPath": "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\GPS_Tracker.csproj",
+      "packagesPath": "C:\\Users\\rezay\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/root/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\rezay\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "D:\\Nugets": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3529,7 +3532,7 @@
           },
           "StackExchange.Redis": {
             "target": "Package",
-            "version": "[2.7.17, )"
+            "version": "[2.7.33, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
@@ -3582,7 +3585,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.405/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   },
