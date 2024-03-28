@@ -40,10 +40,12 @@ namespace GPS_Tracker.Models
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Configurations.Add(new TowingData.Configuration());
+            modelBuilder.Configurations.Add(new UnCleanData.Configuration());
         }
 
 
         public DbSet<Data> Data { get; set; }
+        public DbSet<UnCleanData> UnCleanData { get; set; }
         public DbSet<TowingData> TowingData { get; set; }
         public DbSet<Device> Devices { get; set; }
         public DbSet<ParkPoint> ParkPoints { get; set; }
