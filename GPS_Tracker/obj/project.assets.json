@@ -3475,27 +3475,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rezay\\.nuget\\packages\\": {}
+    "/root/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\GPS_Tracker.csproj",
+      "projectUniqueName": "/var/www/html/Tracker/GPS_Tracker/GPS_Tracker.csproj",
       "projectName": "GPS_Tracker",
-      "projectPath": "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\GPS_Tracker.csproj",
-      "packagesPath": "C:\\Users\\rezay\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rezay\\source\\repos\\Tracker\\GPS_Tracker\\obj\\",
+      "projectPath": "/var/www/html/Tracker/GPS_Tracker/GPS_Tracker.csproj",
+      "packagesPath": "/root/.nuget/packages/",
+      "outputPath": "/var/www/html/Tracker/GPS_Tracker/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\rezay\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/root/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "D:\\Nugets": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3567,7 +3564,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.405/RuntimeIdentifierGraph.json"
       }
     }
   },
