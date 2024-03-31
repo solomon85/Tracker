@@ -17,7 +17,7 @@ namespace GPS_Tracker
         private static int rand = 0;
         public int id = 0;
         public string imei = "";
-        public RSocket? client; 
+        public RSocket? client;
         ParserBase parser = null;
         public int Decode(List<byte> receiveBytes, string IMEI)
         {
@@ -64,11 +64,11 @@ namespace GPS_Tracker
             {
                 if (e.ByteData.Length == 17)
                 {
-                    Console.WriteLine("Received Byte : " + ByteArrayToHexString(e.ByteData) + "  " + e.ByteData.Length);
+                    Console.WriteLine(DateTime.Now.ToLongTimeString() + " Received IMEI Byte : " + ByteArrayToHexString(e.ByteData) + "  " + e.ByteData.Length);
                     byte[] byteData = new byte[e.ByteData.Length - 2];
                     Array.Copy(e.ByteData, 2, byteData, 0, e.ByteData.Length - 2);
                     imei = Encoding.ASCII.GetString(byteData);
-                    Console.WriteLine("Received Data : " + imei);
+                    Console.WriteLine("Received IMEI Data : " + imei);
 
                     //هر شب لیست جی پس اس های مجاز پاک شود
                     var deviceId = Redis.GetCacheData<long>(imei);
@@ -87,7 +87,7 @@ namespace GPS_Tracker
                                 return;
                             }
                             Redis.SetCacheData(imei, device.DeviceId.ToString());
-                            Redis.KeyExpire(imei, DateTime.Now.AddHours(12));    
+                            Redis.KeyExpire(imei, DateTime.Now.AddHours(12));
                         }
                         else
                         {
@@ -103,7 +103,7 @@ namespace GPS_Tracker
                 }
                 else
                 {
-                    Console.WriteLine("Received Byte : " + ByteArrayToHexString(e.ByteData) + "  " + e.ByteData.Length);
+                    Console.WriteLine(DateTime.Now.ToLongTimeString() + " Received Byte : " + ByteArrayToHexString(e.ByteData) + "  " + e.ByteData.Length);
                     var data = new List<byte>();
                     data.AddRange(e.ByteData);
                     var responseCount = Decode(data, imei);
