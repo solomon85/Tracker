@@ -13,7 +13,7 @@ namespace GPS_Tracker.Models
         public long DeviceIMEI { get; set; }
         public DateTime? DeviceFirstReceivedDate { get; set; }
         public bool? DeviceIsActive { get; set; }
-        public Int16 DeviceModelId { get; set; }
+        public Int16 DeviceGPSModelId { get; set; }
         public string DeviceSimCardNumber { get; set; }
         public byte DeviceSimCardOperatorId { get; set; }
         public int? DeviceSmsRemainCount { get; set; }

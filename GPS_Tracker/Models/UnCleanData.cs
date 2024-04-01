@@ -49,5 +49,6 @@ namespace GPS_Tracker.Models
         public byte OverSpeed { get; set; }
         public byte Tempture { get; set; }
         public Int16 DeviceDistanceTraveled { get; set; }
+        public Boolean PowerStatus { get; set; }
     }
 }
