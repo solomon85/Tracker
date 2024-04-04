@@ -24,6 +24,7 @@ namespace GPS_Tracker
             .ForEach(e => e.State = EntityState.Detached);
 
 
+
         public override int DecodeAVL(List<byte> receiveBytes, string IMEI)
         {
 
