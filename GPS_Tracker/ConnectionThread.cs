@@ -112,6 +112,7 @@ namespace GPS_Tracker
                     var res = BitConverter.GetBytes(responseCount);
                     Array.Reverse(res);
                     client.Send(res);
+                    Console.WriteLine(DateTime.Now.ToLongTimeString() + " Send Data : " + ByteArrayToHexString(res));
 
                 }
             }

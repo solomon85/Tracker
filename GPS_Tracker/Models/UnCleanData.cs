@@ -22,8 +22,9 @@ namespace GPS_Tracker.Models
                 //    ;
             }
         }
-        public long Id { get; set; }
+        [Key, Column(Order = 0)]
         public Int16 DeviceId { get; set; }
+        [Key, Column(Order = 1)]
         public DateTime DeviceTime { get; set; }
         public DateTime ServerTime { get; set; }
         public int Latitude { get; set; }

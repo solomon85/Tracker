@@ -169,6 +169,9 @@ namespace GPS_Tracker
                     var redisLon = Redis.GetCacheData<int>(deviceId + "_DataLong");
                     var minTime = DateTimeOffset.Now.AddDays(-365).ToUnixTimeSeconds();
 
+                    if (redisLat < timeStamp)
+                        Redis.SetCacheData(deviceId + "_LastDataTime", timeStamp.ToString());
+
                     var powerOn = false;
                     try
                     {
@@ -216,7 +219,7 @@ namespace GPS_Tracker
 
                         try
                         {
-                            // db.SaveChanges();
+                             db.SaveChanges();
                         }
                         catch (Exception ex)
                         {
@@ -264,7 +267,7 @@ namespace GPS_Tracker
 
                         try
                         {
-                            //db.SaveChanges();
+                            db.SaveChanges();
                         }
                         catch (Exception ex)
                         {
