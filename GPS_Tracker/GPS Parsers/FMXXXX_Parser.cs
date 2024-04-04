@@ -169,7 +169,7 @@ namespace GPS_Tracker
                     var redisLon = Redis.GetCacheData<int>(deviceId + "_DataLong");
                     var minTime = DateTimeOffset.Now.AddDays(-365).ToUnixTimeSeconds();
                     
-                    if (minTime < timeStamp) continue;
+                    if (minTime > timeStamp) continue;
 
                     if (redisLat < timeStamp)
                         Redis.SetCacheData(deviceId + "_LastDataTime", timeStamp.ToString());
