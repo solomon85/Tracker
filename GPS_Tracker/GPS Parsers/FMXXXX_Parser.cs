@@ -168,6 +168,8 @@ namespace GPS_Tracker
                     var redisLat = Redis.GetCacheData<int>(deviceId + "_DataLat");
                     var redisLon = Redis.GetCacheData<int>(deviceId + "_DataLong");
                     var minTime = DateTimeOffset.Now.AddDays(-365).ToUnixTimeSeconds();
+                    
+                    if (minTime < timeStamp) continue;
 
                     if (redisLat < timeStamp)
                         Redis.SetCacheData(deviceId + "_LastDataTime", timeStamp.ToString());
@@ -188,7 +190,7 @@ namespace GPS_Tracker
                         Redis.SetCacheData(deviceId + "_VehiclePower", "0");
                     }
 
-                    if (minTime < timeStamp && latitude != 0 && longtitude != 0 && ((short)gpsData.IO_Elements_4B[199] > 0) || speed > 0)
+                    if (latitude != 0 && longtitude != 0 && ((short)gpsData.IO_Elements_4B[199] > 0) || speed > 0)
                     {
                         Data newData = new Data()
                         {
