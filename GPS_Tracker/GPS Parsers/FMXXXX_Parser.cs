@@ -27,7 +27,7 @@ namespace GPS_Tracker
 
         public override int DecodeAVL(List<byte> receiveBytes, string IMEI)
         {
-
+            bool LastDataIsUnClean = false;
             string hexDataLength = string.Empty;
             receiveBytes.Skip(4).Take(4).ToList().ForEach(delegate (byte b) { hexDataLength += string.Format("{0:X2}", b); });
             int dataLength = Convert.ToInt32(hexDataLength, 16);
@@ -169,7 +169,7 @@ namespace GPS_Tracker
                     var redisLat = Redis.GetCacheData<int>(deviceId + "_DataLat");
                     var redisLon = Redis.GetCacheData<int>(deviceId + "_DataLong");
                     var minTime = DateTimeOffset.Now.AddDays(-365).ToUnixTimeSeconds();
-                    
+
                     if (minTime > timeStamp) continue;
 
                     if (redisLat < timeStamp)
@@ -180,16 +180,10 @@ namespace GPS_Tracker
                     {
                         if (/*gpsData.IO_Elements_1B[1] == 1 &&*/ (((double)gpsData.IO_Elements_2B[66]) / 1000) > 13.5)
                         {
-                            Redis.SetCacheData(deviceId + "_VehiclePower", "1");
                             powerOn = true;
                         }
-                        else
-                            Redis.SetCacheData(deviceId + "_VehiclePower", "0");
                     }
-                    catch (Exception ex)
-                    {
-                        Redis.SetCacheData(deviceId + "_VehiclePower", "0");
-                    }
+                    catch (Exception ex) { }
 
                     if (latitude != 0 && longtitude != 0 && ((short)gpsData.IO_Elements_4B[199] > 0) || speed > 0)
                     {
@@ -220,9 +214,62 @@ namespace GPS_Tracker
                         };
                         db.Data.Add(newData);
 
+
+
+
+                        if (LastDataIsUnClean)
+                        {
+                            UnCleanData newUnCleanData = new UnCleanData()
+                            {
+                                DeviceId = deviceId,
+                                DeviceTime = deviceTime,
+                                ServerTime = DateTime.Now,
+                                Longitude = Redis.GetCacheData<int>(deviceId + "_DataLong"),
+                                Latitude = Redis.GetCacheData<int>(deviceId + "_DataLat"),
+                                Altitude = Redis.GetCacheData<short>(deviceId + "_DataAlt"),
+                                Angel = Redis.GetCacheData<short>(deviceId + "_DataAngle"),
+                                Speed = (byte)speed,
+                                Satellites = satellites,
+
+
+                                DigitalIn = Convert.ToBoolean(gpsData.IO_Elements_1B[1]),/////////
+                                AnalogIn = gpsData.IO_Elements_2B[9],////////
+                                DeviceBatteryVoltage = (((double)gpsData.IO_Elements_2B[67]) / 1000),
+                                VehicleBatteryVoltage = (((double)gpsData.IO_Elements_2B[66]) / 1000),
+                                GSMState = gpsData.IO_Elements_1B[21],
+                                DeviceBatteryPercent = gpsData.IO_Elements_1B[113],
+                                CellId = gpsData.IO_Elements_2B[205],
+                                AreaCode = gpsData.IO_Elements_2B[206],
+                                GSMOperatorCode = (short)gpsData.IO_Elements_4B[241],
+                                DeviceDistanceTraveled = (short)gpsData.IO_Elements_4B[199],
+                                DistanceTraveled = CalculateDistance(redisLat, redisLon, latitude, longtitude),
+                                PowerStatus = Redis.GetCacheData<bool>(deviceId + "_VehiclePower")
+                            };
+                            db.UnCleanData.Add(newUnCleanData);
+
+
+                            try
+                            {
+                                db.SaveChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                ShowDiagnosticInfo("UnCleanData Exception in CRUD : " + ex.Message);
+                                ResetContextState();
+                                Log l = new Log()
+                                {
+                                    Date = DateTime.Now,
+                                    LogType = "UnCleanData CRUD Exception",
+                                    LogContent = ex.Message + "------" + (ex.InnerException != null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "")
+                                };
+                                db.Logs.Add(l);
+                                db.SaveChanges();
+                            }
+                        }
                         try
                         {
-                             db.SaveChanges();
+                            db.SaveChanges();
+                            LastDataIsUnClean = false;
                         }
                         catch (Exception ex)
                         {
@@ -271,6 +318,7 @@ namespace GPS_Tracker
                         try
                         {
                             db.SaveChanges();
+                            LastDataIsUnClean = true;
                         }
                         catch (Exception ex)
                         {
@@ -296,6 +344,7 @@ namespace GPS_Tracker
                         Redis.SetCacheData(deviceId + "_DataSpeed", speed.ToString());
                         Redis.SetCacheData(deviceId + "_DataSatellites", satellites.ToString());
                         Redis.SetCacheData(deviceId + "_DataDeviceBatteryVoltage", (((double)gpsData.IO_Elements_2B[67]) / 1000).ToString());
+                        Redis.SetCacheData(deviceId + "_VehiclePower", powerOn.ToString());
                     }
 
                     //if (timeStamp > redisTime && (latitude != redisLat || longtitude != redisLon) && minTime < timeStamp)
