@@ -118,12 +118,13 @@ namespace GPS_Tracker
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception : " + ex.Message);
+                                var message = ex.Message + "------" + (ex.InnerException != null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "");
+                Console.WriteLine("Exception : " + message);
                 Log l = new Log()
                 {
                     Date = DateTime.Now,
                     LogType = "ConnectionThread Exception",
-                    LogContent = ex.Message + (ex.InnerException != null ? "\n" + ex.InnerException.Message : "")
+                    LogContent = message
                 };
                 db.Logs.Add(l);
                 db.SaveChanges();

@@ -170,6 +170,9 @@ namespace GPS_Tracker
                     var redisLon = Redis.GetCacheData<int>(deviceId + "_DataLong");
                     var minTime = DateTimeOffset.Now.AddDays(-365).ToUnixTimeSeconds();
 
+
+                    var deviceDistanceTraveled = (short)gpsData.IO_Elements_4B[199];
+
                     if (minTime > timeStamp) continue;
 
                     if (redisLat < timeStamp)
@@ -185,38 +188,8 @@ namespace GPS_Tracker
                     }
                     catch (Exception ex) { }
 
-                    if (latitude != 0 && longtitude != 0 && ((short)gpsData.IO_Elements_4B[199] > 0) || speed > 0)
+                    if (latitude != 0 && longtitude != 0 && (deviceDistanceTraveled > 0) || speed > 0)
                     {
-                        Data newData = new Data()
-                        {
-                            DeviceId = deviceId,
-                            DataDeviceTime = deviceTime,
-                            DataServerTime = DateTime.Now,
-                            DataLongitude = longtitude,
-                            DataLatitude = latitude,
-                            DataAltitude = altitude,
-                            DataAngel = angle,
-                            DataSpeed = (byte)speed,
-                            DataSatellites = satellites,
-
-
-                            DataDigitalIn = Convert.ToBoolean(gpsData.IO_Elements_1B[1]),/////////
-                            DataAnalogIn = gpsData.IO_Elements_2B[9],////////
-                            DataDeviceBatteryVoltage = (((double)gpsData.IO_Elements_2B[67]) / 1000),
-                            DataVehicleBatteryVoltage = (((double)gpsData.IO_Elements_2B[66]) / 1000),
-                            DataGSMState = gpsData.IO_Elements_1B[21],
-                            DataDeviceBatteryPercent = gpsData.IO_Elements_1B[113],
-                            DataCellId = gpsData.IO_Elements_2B[205],
-                            DataAreaCode = gpsData.IO_Elements_2B[206],
-                            DataGSMOperatorCode = (short)gpsData.IO_Elements_4B[241],
-                            DataDeviceDistanceTraveled = (short)gpsData.IO_Elements_4B[199],
-                            DataDistanceTraveled = CalculateDistance(redisLat, redisLon, latitude, longtitude),
-                        };
-                        db.Data.Add(newData);
-
-
-
-
                         if (LastDataIsUnClean)
                         {
                             UnCleanData newUnCleanData = new UnCleanData()
@@ -241,7 +214,7 @@ namespace GPS_Tracker
                                 CellId = gpsData.IO_Elements_2B[205],
                                 AreaCode = gpsData.IO_Elements_2B[206],
                                 GSMOperatorCode = (short)gpsData.IO_Elements_4B[241],
-                                DeviceDistanceTraveled = (short)gpsData.IO_Elements_4B[199],
+                                DeviceDistanceTraveled = deviceDistanceTraveled,
                                 DistanceTraveled = CalculateDistance(redisLat, redisLon, latitude, longtitude),
                                 PowerStatus = Redis.GetCacheData<bool>(deviceId + "_VehiclePower")
                             };
@@ -254,35 +227,119 @@ namespace GPS_Tracker
                             }
                             catch (Exception ex)
                             {
-                                ShowDiagnosticInfo("UnCleanData Exception in CRUD : " + ex.Message);
+                                var message = ex.Message + "------" + (ex.InnerException != null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "");
+                                ShowDiagnosticInfo("UnCleanData Exception in CRUD : " + message);
                                 ResetContextState();
                                 Log l = new Log()
                                 {
                                     Date = DateTime.Now,
                                     LogType = "UnCleanData CRUD Exception",
-                                    LogContent = ex.Message + "------" + (ex.InnerException != null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "")
+                                    LogContent = message
                                 };
                                 db.Logs.Add(l);
                                 db.SaveChanges();
                             }
                         }
-                        try
+
+
+                        if (powerOn)
                         {
-                            db.SaveChanges();
-                            LastDataIsUnClean = false;
-                        }
-                        catch (Exception ex)
-                        {
-                            ShowDiagnosticInfo("Exception in CRUD : " + ex.Message);
-                            ResetContextState();
-                            Log l = new Log()
+                            Data newData = new Data()
                             {
-                                Date = DateTime.Now,
-                                LogType = "CRUD Exception",
-                                LogContent = ex.Message + "------" + (ex.InnerException != null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "")
+                                DeviceId = deviceId,
+                                DataDeviceTime = deviceTime,
+                                DataServerTime = DateTime.Now,
+                                DataLongitude = longtitude,
+                                DataLatitude = latitude,
+                                DataAltitude = altitude,
+                                DataAngel = angle,
+                                DataSpeed = (byte)speed,
+                                DataSatellites = satellites,
+
+
+                                DataDigitalIn = Convert.ToBoolean(gpsData.IO_Elements_1B[1]),/////////
+                                DataAnalogIn = gpsData.IO_Elements_2B[9],////////
+                                DataDeviceBatteryVoltage = (((double)gpsData.IO_Elements_2B[67]) / 1000),
+                                DataVehicleBatteryVoltage = (((double)gpsData.IO_Elements_2B[66]) / 1000),
+                                DataGSMState = gpsData.IO_Elements_1B[21],
+                                DataDeviceBatteryPercent = gpsData.IO_Elements_1B[113],
+                                DataCellId = gpsData.IO_Elements_2B[205],
+                                DataAreaCode = gpsData.IO_Elements_2B[206],
+                                DataGSMOperatorCode = (short)gpsData.IO_Elements_4B[241],
+                                DataDeviceDistanceTraveled = deviceDistanceTraveled,
+                                DataDistanceTraveled = CalculateDistance(redisLat, redisLon, latitude, longtitude),
                             };
-                            db.Logs.Add(l);
-                            db.SaveChanges();
+                            db.Data.Add(newData);
+
+                            try
+                            {
+                                db.SaveChanges();
+                                LastDataIsUnClean = false;
+                            }
+                            catch (Exception ex)
+                            {
+                                var message = ex.Message + "------" + (ex.InnerException != null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "");
+                                ShowDiagnosticInfo("Exception in CRUD : " + message);
+                                ResetContextState();
+                                Log l = new Log()
+                                {
+                                    Date = DateTime.Now,
+                                    LogType = "CRUD Exception",
+                                    LogContent = message
+                                };
+                                db.Logs.Add(l);
+                                db.SaveChanges();
+                            }
+                        }
+                        else
+                        {
+                            TowingData newData = new TowingData()
+                            {
+                                DeviceId = deviceId,
+                                TowingDataDeviceTime = deviceTime,
+                                TowingDataServerTime = DateTime.Now,
+                                TowingDataLongitude = longtitude,
+                                TowingDataLatitude = latitude,
+                                TowingDataAltitude = altitude,
+                                TowingDataAngel = angle,
+                                TowingDataSpeed = (byte)speed,
+                                TowingDataSatellites = satellites,
+
+
+                                TowingDataDigitalIn = Convert.ToBoolean(gpsData.IO_Elements_1B[1]),/////////
+                                TowingDataAnalogIn = gpsData.IO_Elements_2B[9],////////
+                                TowingDataDeviceBatteryVoltage = (((double)gpsData.IO_Elements_2B[67]) / 1000),
+                                TowingDataVehicleBatteryVoltage = (((double)gpsData.IO_Elements_2B[66]) / 1000),
+                                TowingDataGSMState = gpsData.IO_Elements_1B[21],
+                                TowingDataDeviceBatteryPercent = gpsData.IO_Elements_1B[113],
+                                TowingDataCellId = gpsData.IO_Elements_2B[205],
+                                TowingDataAreaCode = gpsData.IO_Elements_2B[206],
+                                TowingDataGSMOperatorCode = (short)gpsData.IO_Elements_4B[241],
+                                TowingDataDeviceDistanceTraveled = deviceDistanceTraveled,
+                                TowingDataDistanceTraveled = CalculateDistance(redisLat, redisLon, latitude, longtitude),
+                                
+                            };
+                            db.TowingData.Add(newData);
+
+                            try
+                            {
+                                db.SaveChanges();
+                                LastDataIsUnClean = false;
+                            }
+                            catch (Exception ex)
+                            {
+                                var message = ex.Message + "------" + (ex.InnerException != null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "");
+                                ShowDiagnosticInfo("Exception in TowingData CRUD : " + message);
+                                ResetContextState();
+                                Log l = new Log()
+                                {
+                                    Date = DateTime.Now,
+                                    LogType = "CRUD TowingData Exception",
+                                    LogContent = ex.Message + "------" + message
+                                };
+                                db.Logs.Add(l);
+                                db.SaveChanges();
+                            }
                         }
                     }
                     else
@@ -309,7 +366,7 @@ namespace GPS_Tracker
                             CellId = gpsData.IO_Elements_2B[205],
                             AreaCode = gpsData.IO_Elements_2B[206],
                             GSMOperatorCode = (short)gpsData.IO_Elements_4B[241],
-                            DeviceDistanceTraveled = (short)gpsData.IO_Elements_4B[199],
+                            DeviceDistanceTraveled = deviceDistanceTraveled,
                             DistanceTraveled = CalculateDistance(redisLat, redisLon, latitude, longtitude),
                             PowerStatus = powerOn
                         };
@@ -322,13 +379,14 @@ namespace GPS_Tracker
                         }
                         catch (Exception ex)
                         {
-                            ShowDiagnosticInfo("UnCleanData Exception in CRUD : " + ex.Message);
+                                var message = ex.Message + "------" + (ex.InnerException != null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "");
+                            ShowDiagnosticInfo("UnCleanData Exception in CRUD : " + message);
                             ResetContextState();
                             Log l = new Log()
                             {
                                 Date = DateTime.Now,
                                 LogType = "UnCleanData CRUD Exception",
-                                LogContent = ex.Message + "------" + (ex.InnerException != null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "")
+                                LogContent = message
                             };
                             db.Logs.Add(l);
                             db.SaveChanges();
@@ -521,13 +579,15 @@ namespace GPS_Tracker
                 }
                 catch (Exception ex)
                 {
-                    ShowDiagnosticInfo("Exception in Parser : " + ex.Message);
+                                var message = ex.Message + "------" + (ex.InnerException != null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "");
+                    ShowDiagnosticInfo("Exception in Parser : " + message);
                     ResetContextState();
                     Log l = new Log()
                     {
                         Date = DateTime.Now,
                         LogType = "Parser Exception",
-                        LogContent = ex.Message + "------" + (ex.InnerException != null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "")
+                        LogContent = message
+
                     };
                     db.Logs.Add(l);
                     db.SaveChanges();
