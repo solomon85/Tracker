@@ -21,7 +21,7 @@ IPEndPoint ServerIP = new IPEndPoint(IPAddress.Any, 9090);
 
 void Start()
 {
-    Console.WriteLine("Started Service V1402.01.24");
+    Console.WriteLine("Started Service V1402.01.28");
     int connectionCount = 1;
     while (true)
     {

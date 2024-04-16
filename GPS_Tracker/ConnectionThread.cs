@@ -103,7 +103,8 @@ namespace GPS_Tracker
                 }
                 else
                 {
-                    Console.WriteLine(DateTime.Now.ToLongTimeString() + " Received Byte : " + ByteArrayToHexString(e.ByteData) + "  " + e.ByteData.Length);
+                    //Console.WriteLine(DateTime.Now.ToLongTimeString() + " Received Byte : " + ByteArrayToHexString(e.ByteData) + "  " + e.ByteData.Length);
+                    Console.WriteLine(DateTime.Now.ToLongTimeString() + " Received Data : " + e.ByteData.Length);
                     var data = new List<byte>();
                     data.AddRange(e.ByteData);
                     var responseCount = Decode(data, imei);
@@ -118,7 +119,7 @@ namespace GPS_Tracker
             }
             catch (Exception ex)
             {
-                                var message = ex.Message + "------" + (ex.InnerException != null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "");
+                var message = ex.Message + "------" + (ex.InnerException != null && ex.InnerException.InnerException != null ? "\n" + ex.InnerException.InnerException.Message : "");
                 Console.WriteLine("Exception : " + message);
                 Log l = new Log()
                 {

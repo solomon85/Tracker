@@ -173,9 +173,11 @@ namespace GPS_Tracker
 
                     var deviceDistanceTraveled = (short)gpsData.IO_Elements_4B[199];
 
+                    ShowDiagnosticInfo("minTime" + minTime.ToString("#,#"));
+                    ShowDiagnosticInfo("timeStamp : " + timeStamp.ToString("#,#"));
                     if (minTime > timeStamp) continue;
 
-                    if (redisLat < timeStamp)
+                    if (redisTime < timeStamp)
                         Redis.SetCacheData(deviceId + "_LastDataTime", timeStamp.ToString());
 
                     var powerOn = false;
